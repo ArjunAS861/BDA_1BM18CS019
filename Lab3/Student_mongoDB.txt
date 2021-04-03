@@ -1,0 +1,270 @@
+C:\Program Files\MongoDB\Server\4.4\bin>mongo
+MongoDB shell version v4.4.4
+connecting to: mongodb://127.0.0.1:27017/?compressors=disabled&gssapiServiceName=mongodb
+Implicit session: session { "id" : UUID("434da877-386d-4619-99fc-b3daa729df26") }
+MongoDB server version: 4.4.4
+---
+The server generated these startup warnings when booting:
+        2021-04-03T10:06:43.412+05:30: Access control is not enabled for the database. Read and write access to data and configuration is unrestricted
+---
+---
+        Enable MongoDB's free cloud-based monitoring service, which will then receive and display
+        metrics about your deployment (disk utilization, CPU, operation statistics, etc).
+
+        The monitoring data will be available on a MongoDB website with a unique URL accessible to you
+        and anyone you share the URL with. MongoDB may use this information to make product
+        improvements and to suggest MongoDB products and deployment options to you.
+
+        To enable free monitoring, run the following command: db.enableFreeMonitoring()
+        To permanently disable this reminder, run the following command: db.disableFreeMonitoring()
+---
+> show dbs
+admin   0.000GB
+config  0.000GB
+local   0.000GB
+> use Student
+
+#INSERTION
+>db.student_info.insertOne({name: "Arjun A.S", rollNo:001, age:21, contactno:7619519441,email: "arjunas94480@gmail.com"})
+{ 
+        "acknowledged" : true,
+        "insertedId" : ObjectId("60680fa328a4e0c7dee6e1de")
+}
+
+> db.student_info.insertMany([{name: "Praneeth", rollNo:011, age:21, contactno:6362342118,email: "praneethb12@gmail.com"},{name: "Chandan" ,rollNo:010, age:21, contactno: 9980251728,email:"chandancb@gmail.com"}])
+{
+        "acknowledged" : true,
+        "insertedIds" : [
+                ObjectId("6068105228a4e0c7dee6e1df"),
+                ObjectId("6068105228a4e0c7dee6e1e0")
+        ]
+}
+
+
+> db.student_info.insertOne({name: "Rajesh", rollNo:010, age:21, contactno:7619456441,email: "rajeshbt0@gmail.com"})
+{
+        "acknowledged" : true,
+        "insertedId" : ObjectId("606810a828a4e0c7dee6e1e1")
+}
+
+> db.student_info.find().pretty()
+{
+        "_id" : ObjectId("60680fa328a4e0c7dee6e1de"),
+        "name" : "Arjun A.S",
+        "rollNo" : 1,
+        "age" : 21,
+        "contactno" : 7619519441,
+        "email" : "arjunas94480@gmail.com"
+}
+{
+        "_id" : ObjectId("6068105228a4e0c7dee6e1df"),
+        "name" : "Praneeth",
+        "rollNo" : 9,
+        "age" : 21,
+        "contactno" : 6362342118,
+        "email" : "praneethb12@gmail.com"
+}
+{
+        "_id" : ObjectId("6068105228a4e0c7dee6e1e0"),
+        "name" : "Chandan",
+        "rollNo" : 8,
+        "age" : 21,
+        "contactno" : 9980251728,
+        "email" : "chandancb@gmail.com"
+}
+{
+        "_id" : ObjectId("606810a828a4e0c7dee6e1e1"),
+        "name" : "Rajesh",
+        "rollNo" : 10,
+        "age" : 21,
+        "contactno" : 7619456441,
+        "email" : "rajeshbt0@gmail.com"
+}
+
+
+#UPDATION 1
+> db.student_info.update({rollNo: 10}, {$set: {email: "rajeshnewmail@gmail.com"}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.student_info.find().pretty()
+{
+        "_id" : ObjectId("60680fa328a4e0c7dee6e1de"),
+        "name" : "Arjun A.S",
+        "rollNo" : 1,
+        "age" : 21,
+        "contactno" : 7619519441,
+        "email" : "arjunas94480@gmail.com"
+}
+{
+        "_id" : ObjectId("6068105228a4e0c7dee6e1df"),
+        "name" : "Praneeth",
+        "rollNo" : 9,
+        "age" : 21,
+        "contactno" : 6362342118,
+        "email" : "praneethb12@gmail.com"
+}
+{
+        "_id" : ObjectId("6068105228a4e0c7dee6e1e0"),
+        "name" : "Chandan",
+        "rollNo" : 8,
+        "age" : 21,
+        "contactno" : 9980251728,
+        "email" : "chandancb@gmail.com"
+}
+{
+        "_id" : ObjectId("606810a828a4e0c7dee6e1e1"),
+        "name" : "Rajesh",
+        "rollNo" : 10,
+        "age" : 21,
+        "contactno" : 7619456441,
+        "email" : "rajeshnewmail@gmail.com"
+}
+> db.student_info.insertOne({name: "Rakesh", rollNo:011, age:21, contactno:9380366251,email: "rakeshbts@gmail.com"})
+{
+        "acknowledged" : true,
+        "insertedId" : ObjectId("6068137b28a4e0c7dee6e1e2")
+}
+
+> db.student_info.find().pretty()
+{
+        "_id" : ObjectId("60680fa328a4e0c7dee6e1de"),
+        "name" : "Arjun A.S",
+        "rollNo" : 1,
+        "age" : 21,
+        "contactno" : 7619519441,
+        "email" : "arjunas94480@gmail.com"
+}
+{
+        "_id" : ObjectId("6068105228a4e0c7dee6e1df"),
+        "name" : "Praneeth",
+        "rollNo" : 9,
+        "age" : 21,
+        "contactno" : 6362342118,
+        "email" : "praneethb12@gmail.com"
+}
+{
+        "_id" : ObjectId("6068105228a4e0c7dee6e1e0"),
+        "name" : "Chandan",
+        "rollNo" : 8,
+        "age" : 21,
+        "contactno" : 9980251728,
+        "email" : "chandancb@gmail.com"
+}
+{
+        "_id" : ObjectId("606810a828a4e0c7dee6e1e1"),
+        "name" : "Rajesh",
+        "rollNo" : 10,
+        "age" : 21,
+        "contactno" : 7619456441,
+        "email" : "rajeshnewmail@gmail.com"
+}
+{
+        "_id" : ObjectId("6068137b28a4e0c7dee6e1e2"),
+        "name" : "Rakesh",
+        "rollNo" : 11,
+        "age" : 21,
+        "contactno" : 9380366251,
+        "email" : "rakeshbts@gmail.com"
+}
+
+
+#UPDATION 2
+> db.student_info.update({rollNo: 11}, {$set: {name: "RajaRam"}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.student_info.find().pretty()
+{
+        "_id" : ObjectId("60680fa328a4e0c7dee6e1de"),
+        "name" : "Arjun A.S",
+        "rollNo" : 1,
+        "age" : 21,
+        "contactno" : 7619519441,
+        "email" : "arjunas94480@gmail.com"
+}
+{
+        "_id" : ObjectId("6068105228a4e0c7dee6e1df"),
+        "name" : "Praneeth",
+        "rollNo" : 9,
+        "age" : 21,
+        "contactno" : 6362342118,
+        "email" : "praneethb12@gmail.com"
+}
+{
+        "_id" : ObjectId("6068105228a4e0c7dee6e1e0"),
+        "name" : "Chandan",
+        "rollNo" : 8,
+        "age" : 21,
+        "contactno" : 9980251728,
+        "email" : "chandancb@gmail.com"
+}
+{
+        "_id" : ObjectId("606810a828a4e0c7dee6e1e1"),
+        "name" : "Rajesh",
+        "rollNo" : 10,
+        "age" : 21,
+        "contactno" : 7619456441,
+        "email" : "rajeshnewmail@gmail.com"
+}
+{
+        "_id" : ObjectId("6068137b28a4e0c7dee6e1e2"),
+        "name" : "RajaRam",
+        "rollNo" : 11,
+        "age" : 21,
+        "contactno" : 9380366251,
+        "email" : "rakeshbts@gmail.com"
+}
+
+#EXPORT to .csv file
+C:\Program Files\MongoDB\Tools\100\bin>mongoexport --db=Student --collection=student_info --type=csv --fields=rollNo,age,contactno,email --out=C:\Users\arjun\StudentInfo.csv
+2021-04-03T12:54:02.923+0530    connected to: mongodb://localhost/
+2021-04-03T12:54:02.937+0530    exported 5 records
+
+
+>db.student_info.drop()
+true
+
+
+#IMPORT from .csv file
+C:\Program Files\MongoDB\Tools\100\bin>mongoimport -d Student -c Stud_info --type csv --file=C:\Users\arjun\StudentInfo.csv --headerline
+2021-04-03T13:19:54.274+0530    connected to: mongodb://localhost/
+2021-04-03T13:19:54.308+0530    5 document(s) imported successfully. 0 document(s) failed to import.
+
+
+
+#After Importing from th CSV FILE
+>db.Stud_info.find().pretty()
+{
+        "_id" : ObjectId("60681e227dd5bb0f74d72fbf"),
+        "rollNo" : 1,
+        "age" : 21,
+        "contactno" : 7619519441,
+        "email" : "arjunas94480@gmail.com"
+}
+{
+        "_id" : ObjectId("60681e227dd5bb0f74d72fc0"),
+        "rollNo" : 8,
+        "age" : 21,
+        "contactno" : 9980251728,
+        "email" : "chandancb@gmail.com"
+}
+{
+        "_id" : ObjectId("60681e227dd5bb0f74d72fc1"),
+        "rollNo" : 10,
+        "age" : 21,
+        "contactno" : 7619456441,
+        "email" : "rajeshnewmail@gmail.com"
+}
+{
+        "_id" : ObjectId("60681e227dd5bb0f74d72fc2"),
+        "rollNo" : 11,
+        "age" : 21,
+        "contactno" : 9380366251,
+        "email" : "rakeshbts@gmail.com"
+}
+{
+        "_id" : ObjectId("60681e227dd5bb0f74d72fc3"),
+        "rollNo" : 9,
+        "age" : 21,
+        "contactno" : 6362342118,
+        "email" : "praneethb12@gmail.com"
+}
+
+
